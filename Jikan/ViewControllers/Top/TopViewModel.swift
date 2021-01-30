@@ -19,12 +19,12 @@ class TopViewModel: BasedViewModel {
         networkServiceProvider.request(for: JikanAPI.top(type: "anime", page: nil, subtype: nil)) { [weak self] (result) in
             switch result {
             case .success(let response):
-                guard let newAnimes = try? JSONDecoder().decode(TopAnimesData.self, from: response.data) else {
+                guard let parsedData = try? JSONDecoder().decode(TopAnimesData.self, from: response.data) else {
                     print("parsing error")
                     return
                 }
-                
-                print(newAnimes)
+                self?.animes.append(contentsOf: parsedData.top)
+                self?.onAnimesFetch?(nil)
                 
             case .failure(let error):
                 break

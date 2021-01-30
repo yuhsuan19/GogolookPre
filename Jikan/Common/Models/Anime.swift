@@ -29,4 +29,11 @@ struct Anime: Codable {
         }
         return URL(string: urlString)
     }
+    
+    var rankText: String {
+        let formatter =  NumberFormatter()
+        formatter.numberStyle = .ordinal
+        let text = formatter.string(from: NSNumber(value: rank)) ?? "-"
+        return text
+    }
 }

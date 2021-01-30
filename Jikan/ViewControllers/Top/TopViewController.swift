@@ -29,6 +29,18 @@ class TopViewController: BasedViewController<TopViewModel> {
         viewModel.fetchTopAnimes()
     }
     
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        viewModel.onAnimesFetch = { [weak self] (error) in
+            if let error = error {
+                // error handeling
+            } else {
+                self?.tableView.animes = self?.viewModel.animes ?? []
+            }
+        }
+    }
+    
     override func setUpAndLayoutViews() {
         super.setUpAndLayoutViews()
         

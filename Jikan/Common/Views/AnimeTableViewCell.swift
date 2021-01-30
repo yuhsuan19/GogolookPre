@@ -9,6 +9,16 @@ import UIKit
 
 class AnimeTableViewCell: BasedTableViewCell {
     
+    var anime: Anime? {
+        didSet {
+            coverImageView.kf.setImage(with: anime?.imageURL?.imageResource)
+            titleLabel.text = anime?.title
+            rankLabel.text = "Rank \(anime?.rankText ?? "-")"
+            typeLabel.text = ",Type: \(anime?.type ?? "-")"
+            durationLabel.text = "\(anime?.start_date ?? "-") - \(anime?.end_date ?? "Now")"
+        }
+    }
+    
     lazy var coverImageView: LayoutImageView = {
         let imageView = LayoutImageView()
         imageView.backgroundColor = UIColor.systemGray.withAlphaComponent(0.8)
