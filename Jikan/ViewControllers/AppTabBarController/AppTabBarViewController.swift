@@ -20,7 +20,8 @@ class AppTabBarViewController: UITabBarController {
     }
     
     private func setUpViewControllers() {
-        viewControllers = [TopViewController(), FavoriteViewController()]
+        let topNavigation = UINavigationController(rootViewController: TopViewController())
+        viewControllers = [topNavigation, FavoriteViewController()]
     }
 }
 

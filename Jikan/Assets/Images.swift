@@ -13,4 +13,8 @@ struct Images {
         static let top = UIImage(named: "tabBar_top")
         static let favorite = UIImage(named: "tabBar_favorite")
     }
+    
+    struct Top {
+        static let typePicker = UIImage(named: "top_typePicker")
+    }
 }
