@@ -35,6 +35,9 @@
 		C298CBCE25C3F73E0087FEEA /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = C298CBCD25C3F73E0087FEEA /* Images.swift */; };
 		C29F7C7B25C5AB0600290E6E /* AnimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7C7A25C5AB0600290E6E /* AnimeTableView.swift */; };
 		C29F7C8325C5AD3F00290E6E /* AnimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7C8225C5AD3F00290E6E /* AnimeTableViewCell.swift */; };
+		C29F7C8925C6E17500290E6E /* TypePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7C8825C6E17400290E6E /* TypePickerCollectionViewCell.swift */; };
+		C29F7C9D25C6E59600290E6E /* TypePickerCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7C9C25C6E59600290E6E /* TypePickerCollectionReusableView.swift */; };
+		C29F7CA525C6F33900290E6E /* TypePickerCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CA425C6F33900290E6E /* TypePickerCollectionViewFlowLayout.swift */; };
 		C2D350ED25B02AC60020FD79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D350EC25B02AC60020FD79 /* AppDelegate.swift */; };
 		C2D350EF25B02AC60020FD79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D350EE25B02AC60020FD79 /* SceneDelegate.swift */; };
 		C2D350F625B02AC80020FD79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D350F525B02AC80020FD79 /* Assets.xcassets */; };
@@ -103,6 +106,9 @@
 		C298CBCD25C3F73E0087FEEA /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		C29F7C7A25C5AB0600290E6E /* AnimeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeTableView.swift; sourceTree = "<group>"; };
 		C29F7C8225C5AD3F00290E6E /* AnimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeTableViewCell.swift; sourceTree = "<group>"; };
+		C29F7C8825C6E17400290E6E /* TypePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		C29F7C9C25C6E59600290E6E /* TypePickerCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerCollectionReusableView.swift; sourceTree = "<group>"; };
+		C29F7CA425C6F33900290E6E /* TypePickerCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		C2D350E925B02AC60020FD79 /* Jikan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jikan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D350EC25B02AC60020FD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D350EE25B02AC60020FD79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				C26A74B925C4896800EFDBDD /* TypePickerViewController.swift */,
+				C29F7C8725C6E12200290E6E /* Views */,
 			);
 			path = TypePicker;
 			sourceTree = "<group>";
@@ -266,6 +273,16 @@
 			children = (
 				C29F7C7A25C5AB0600290E6E /* AnimeTableView.swift */,
 				C29F7C8225C5AD3F00290E6E /* AnimeTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C29F7C8725C6E12200290E6E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C29F7CA425C6F33900290E6E /* TypePickerCollectionViewFlowLayout.swift */,
+				C29F7C8825C6E17400290E6E /* TypePickerCollectionViewCell.swift */,
+				C29F7C9C25C6E59600290E6E /* TypePickerCollectionReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -676,6 +693,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C298CBA925C3F19F0087FEEA /* FavoriteViewModel.swift in Sources */,
+				C29F7CA525C6F33900290E6E /* TypePickerCollectionViewFlowLayout.swift in Sources */,
 				C2D3516725B02F6C0020FD79 /* BasedViewController.swift in Sources */,
 				C2D3517825B045040020FD79 /* BasedView.swift in Sources */,
 				C2D3517E25B047420020FD79 /* LayoutLabel.swift in Sources */,
@@ -684,6 +702,7 @@
 				C24C01F025B14EED0096AE9A /* BasedCollectionViewCell.swift in Sources */,
 				C214B76D25B158B300CC34F6 /* UIStackViewExtension.swift in Sources */,
 				C2D60E2C25C46A8B000D6C82 /* JikanAPI.swift in Sources */,
+				C29F7C8925C6E17500290E6E /* TypePickerCollectionViewCell.swift in Sources */,
 				C298CB9D25C3F1390087FEEA /* TopViewModel.swift in Sources */,
 				C214B75B25B1538B00CC34F6 /* EncodableExtension.swift in Sources */,
 				C24C01EB25B14E1F0096AE9A /* BasedTableViewCell.swift in Sources */,
@@ -706,6 +725,7 @@
 				C298CBCE25C3F73E0087FEEA /* Images.swift in Sources */,
 				C24C01D225B13B540096AE9A /* LayoutImageView.swift in Sources */,
 				C298CB9825C3F12C0087FEEA /* TopViewController.swift in Sources */,
+				C29F7C9D25C6E59600290E6E /* TypePickerCollectionReusableView.swift in Sources */,
 				C24C01CD25B139040096AE9A /* LayoutStackView.swift in Sources */,
 				C24C01C525B136FD0096AE9A /* LayoutView.swift in Sources */,
 				C26A74B425C4776F00EFDBDD /* Anime.swift in Sources */,

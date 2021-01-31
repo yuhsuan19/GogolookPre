@@ -8,8 +8,12 @@
 import UIKit
 
 class TopViewController: BasedViewController<TopViewModel> {
-    
-    lazy var tableView = AnimeTableView()
+        
+    lazy var tableView: AnimeTableView = {
+        let tableview = AnimeTableView()
+        tableview.viewController = self
+        return tableview
+    }()
     
     // MARK: Object life cycle
     init() {
@@ -51,7 +55,12 @@ class TopViewController: BasedViewController<TopViewModel> {
     
     // MARK: User action
     @objc private func onTypePickerButtonTap() {
-        let typePickerPage = TypePickerViewController()
+        let typePickerPage = TypePickerViewController(selectedType: viewModel.type, selectedSubType: viewModel.subType)
         present(typePickerPage, animated: true, completion: nil)
     }
+}
+
+extension TopViewController: AnimeTableViewViewDelegate {
+    
+    
 }

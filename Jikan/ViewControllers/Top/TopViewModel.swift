@@ -10,13 +10,17 @@ import UIKit
 class TopViewModel: BasedViewModel {
     
     // MARK: Fetch top animes
+    var type: Anime.MainType = .anime
+    var subType: Anime.SubType? = nil
+    var page: Int = 1
+    
     var animes: [Anime] = []
     var onAnimesFetch: ((Error?) -> Void)?
     
     func fetchTopAnimes() {
         isLoading = true
         
-        networkServiceProvider.request(for: JikanAPI.top(type: "anime", page: nil, subtype: nil)) { [weak self] (result) in
+        networkServiceProvider.request(for: JikanAPI.top(type: type, page: page, subtype: subType)) { [weak self] (result) in
             switch result {
             case .success(let response):
                 guard let parsedData = try? JSONDecoder().decode(TopAnimesData.self, from: response.data) else {

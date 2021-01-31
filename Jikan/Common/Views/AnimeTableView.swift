@@ -6,8 +6,26 @@
 //
 
 import UIKit
+import SafariServices
+
+protocol AnimeTableViewViewDelegate: UIViewController {
+    func showContentWith(url: URL?)
+}
+
+extension AnimeTableViewViewDelegate {
+    func showContentWith(url: URL?) {
+        guard let url = url else {
+            // error handeling
+            return
+        }
+        let safari = SFSafariViewController(url: url)
+        present(safari, animated: true)
+    }
+}
 
 class AnimeTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+    weak var viewController: AnimeTableViewViewDelegate?
+    
     var animes: [Anime] = [] {
         didSet {
             reloadData()
@@ -42,5 +60,9 @@ class AnimeTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Anime", for: indexPath) as! AnimeTableViewCell
         cell.anime = animes[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewController?.showContentWith(url: animes[indexPath.row].contentURL)
     }
 }

@@ -16,6 +16,10 @@ extension AutoDisposer {
     func addObservedKeyPath(_ keyPath: String, observingAction: (() -> Void)?) {
         addObserver(self, forKeyPath: keyPath, options: [.new], context: nil)
         observedKeyPaths.append(keyPath)
+        
+        if let action = observingAction {
+            keyPathObservingActions = [keyPath: action]
+        }
     }
     
     

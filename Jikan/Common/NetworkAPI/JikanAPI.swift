@@ -8,7 +8,7 @@
 import Foundation
 
 enum JikanAPI {
-    case top(type: String, page: Int?, subtype: String?)
+    case top(type: Anime.MainType, page: Int?, subtype: Anime.SubType?)
 }
 
 extension JikanAPI: NetworkService {
@@ -19,7 +19,7 @@ extension JikanAPI: NetworkService {
     var path: String {
         switch self {
         case .top(let type, let page, let subtype):
-            let parameters: [Any?] = [type, page, subtype]
+            let parameters: [Any?] = [type.rawValue, page, subtype?.rawValue]
             var path = "top"
             (parameters.compactMap() { $0 }).forEach() {
                 path += "/\($0)"
