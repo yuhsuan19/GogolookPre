@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TopViewController: BasedViewController<TopViewModel> {
+class TopViewController: BasedViewController<TopViewModel>, AnimeTableViewViewDelegate {
         
     lazy var tableView: AnimeTableView = {
         let tableview = AnimeTableView()
@@ -48,19 +48,33 @@ class TopViewController: BasedViewController<TopViewModel> {
     override func setUpAndLayoutViews() {
         super.setUpAndLayoutViews()
         
+        updateTitle()
         view.backgroundColor = .secondarySystemBackground
         
         view.addFilledSubView(tableView)
     }
     
+    private func updateTitle() {
+        title = "\(viewModel.type.text) - \(viewModel.subType?.text ?? "All")"
+        tabBarItem = AppTabBarViewController.BarItem.top.tabBarItem
+    }
+    
     // MARK: User action
     @objc private func onTypePickerButtonTap() {
         let typePickerPage = TypePickerViewController(selectedType: viewModel.type, selectedSubType: viewModel.subType)
+        typePickerPage.delegate = self
         present(typePickerPage, animated: true, completion: nil)
     }
 }
 
-extension TopViewController: AnimeTableViewViewDelegate {
-    
-    
+extension TopViewController: TypePickerViewControllerDelegate {
+    func didAnimeTypePicked(type: Anime.MainType, subType: Anime.SubType?) {
+        viewModel.type = type
+        viewModel.subType = subType
+        updateTitle()
+        
+        viewModel.page = 1
+        viewModel.animes.removeAll()
+        viewModel.fetchTopAnimes()
+    }
 }

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol TypePickerViewControllerDelegate: class {
+    func didAnimeTypePicked(type: Anime.MainType, subType: Anime.SubType?)
+}
+
 class TypePickerViewController: BasedViewController<BasedViewModel> {
+    weak var delegate: TypePickerViewControllerDelegate?
+    
     var selectedType: Anime.MainType
     var selectedSubType: Anime.SubType?
     
@@ -68,7 +74,6 @@ class TypePickerViewController: BasedViewController<BasedViewModel> {
             collectionView.topAnchor.constraint(equalTo: cancelButton.bottomAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
     }
     
     // MARK: User action
@@ -77,7 +82,12 @@ class TypePickerViewController: BasedViewController<BasedViewModel> {
     }
     
     @objc func onConfirmButtonTap() {
-        
+        dismiss(animated: true) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.delegate?.didAnimeTypePicked(type: self.selectedType, subType: self.selectedSubType)
+        }
     }
 }
 
