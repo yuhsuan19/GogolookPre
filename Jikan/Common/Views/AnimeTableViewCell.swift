@@ -15,7 +15,12 @@ class AnimeTableViewCell: BasedTableViewCell {
             titleLabel.text = anime?.title
             rankLabel.text = "Rank \(anime?.rankText ?? "-")"
             typeLabel.text = ",Type: \(anime?.type ?? "-")"
-            durationLabel.text = "\(anime?.start_date ?? "-") - \(anime?.end_date ?? "Now")"
+            
+            if anime?.start_date == nil && anime?.end_date == nil {
+                durationLabel.text = "Upcoming"
+            } else {
+                durationLabel.text = "\(anime?.start_date ?? "-") - \(anime?.end_date ?? "Unkown")"
+            }
         }
     }
     

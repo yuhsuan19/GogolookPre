@@ -7,8 +7,8 @@
 
 import UIKit
 
-class TopViewController: BasedViewController<TopViewModel>, AnimeTableViewViewDelegate {
-        
+class TopViewController: BasedViewController<TopViewModel> {
+    
     lazy var tableView: AnimeTableView = {
         let tableview = AnimeTableView()
         tableview.viewController = self
@@ -43,6 +43,11 @@ class TopViewController: BasedViewController<TopViewModel>, AnimeTableViewViewDe
                 self?.tableView.animes = self?.viewModel.animes ?? []
             }
         }
+        
+        viewModel.onTypeReset = { [weak self] in
+            self?.tableView.animes = self?.viewModel.animes ?? []
+            self?.updateTitle()
+        }
     }
     
     override func setUpAndLayoutViews() {
@@ -67,14 +72,12 @@ class TopViewController: BasedViewController<TopViewModel>, AnimeTableViewViewDe
     }
 }
 
-extension TopViewController: TypePickerViewControllerDelegate {
-    func didAnimeTypePicked(type: Anime.MainType, subType: Anime.SubType?) {
-        viewModel.type = type
-        viewModel.subType = subType
-        updateTitle()
-        
-        viewModel.page = 1
-        viewModel.animes.removeAll()
+extension TopViewController: AnimeTableViewViewDelegate, TypePickerViewControllerDelegate {
+    func loadMoreContent() {
         viewModel.fetchTopAnimes()
+    }
+    
+    func didAnimeTypePicked(type: Anime.MainType, subType: Anime.SubType?) {
+        viewModel.resetTypeAndSubType(type: type, subType: subType)
     }
 }

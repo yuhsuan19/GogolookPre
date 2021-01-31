@@ -10,6 +10,7 @@ import SafariServices
 
 protocol AnimeTableViewViewDelegate: UIViewController {
     func showContentWith(url: URL?)
+    func loadMoreContent()
 }
 
 extension AnimeTableViewViewDelegate {
@@ -64,5 +65,11 @@ class AnimeTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewController?.showContentWith(url: animes[indexPath.row].contentURL)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath.row > animes.count - 8) {
+            viewController?.loadMoreContent()
+        }
     }
 }

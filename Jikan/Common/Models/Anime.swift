@@ -12,7 +12,7 @@ struct Anime: Codable {
     var url: String?
     var title: String
     var rank: Int
-    var start_date: String
+    var start_date: String?
     var end_date: String?
     var type: String
     

@@ -19,11 +19,11 @@ class TopViewModel: BasedViewModel {
     var onAnimesFetch: ((Error?) -> Void)?
     
     func fetchTopAnimes() {
-        guard isLoadAll else {
+        guard !isLoadAll, !isLoading else {
             return
         }
         isLoading = true
-        
+        print("load more")
         networkServiceProvider.request(for: JikanAPI.top(type: type, page: page, subtype: subType)) { [weak self] (result) in
             switch result {
             case .success(let response):
@@ -32,6 +32,7 @@ class TopViewModel: BasedViewModel {
                     return
                 }
                 self?.isLoadAll = parsedData.top.count < 50
+                print(parsedData.top.count)
                 self?.animes.append(contentsOf: parsedData.top)
                 self?.onAnimesFetch?(nil)
                 
@@ -42,13 +43,15 @@ class TopViewModel: BasedViewModel {
         }
     }
     
-    func resetTypeAndSubType(type: Anime.MainType, subType: Anime.SubType) {
+    var onTypeReset: (() -> Void)?
+    func resetTypeAndSubType(type: Anime.MainType, subType: Anime.SubType?) {
         self.type = type
         self.subType = subType
         page = 1
         isLoadAll = false
-        
         animes.removeAll()
+        
+        onTypeReset?()
         fetchTopAnimes()
     }
 }

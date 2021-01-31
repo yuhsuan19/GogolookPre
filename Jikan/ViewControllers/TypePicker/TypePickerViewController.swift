@@ -14,8 +14,17 @@ protocol TypePickerViewControllerDelegate: class {
 class TypePickerViewController: BasedViewController<BasedViewModel> {
     weak var delegate: TypePickerViewControllerDelegate?
     
-    var selectedType: Anime.MainType
-    var selectedSubType: Anime.SubType?
+    var selectedType: Anime.MainType {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var selectedSubType: Anime.SubType? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     lazy var cancelButton: LayoutButton = {
         let button = LayoutButton(title: "Cancel", target: self, action: #selector(onCancelButtonTap), for: .touchUpInside)
@@ -136,10 +145,12 @@ extension TypePickerViewController: UICollectionViewDelegate, UICollectionViewDa
         case 0:
             selectedType = types[indexPath.item]
             selectedSubType = nil
-            collectionView.reloadData()
         case 1:
-            selectedSubType = subtypes[selectedType]?[indexPath.item]
-            collectionView.reloadData()
+            if selectedSubType == subtypes[selectedType]?[indexPath.item] {
+                selectedSubType = nil
+            } else {
+                selectedSubType = subtypes[selectedType]?[indexPath.item]
+            }
         default:
             break
         }
