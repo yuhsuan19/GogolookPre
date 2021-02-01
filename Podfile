@@ -9,6 +9,7 @@ target 'Jikan' do
   pod 'Alamofire', '4.9.1'
   pod 'SwiftyJSON', '5.0.0'
   pod 'Kingfisher', '~> 6.0.0'
+  pod 'CouchbaseLite-Swift', '2.8.1'
   
   target 'JikanTests' do
     inherit! :search_paths

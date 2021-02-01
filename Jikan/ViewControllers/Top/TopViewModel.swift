@@ -32,7 +32,6 @@ class TopViewModel: BasedViewModel {
                     return
                 }
                 self?.isLoadAll = parsedData.top.count < 50
-                print(parsedData.top.count)
                 self?.animes.append(contentsOf: parsedData.top)
                 self?.onAnimesFetch?(nil)
                 

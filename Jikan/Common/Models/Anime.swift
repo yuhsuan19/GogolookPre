@@ -8,6 +8,7 @@
 import Foundation
 
 struct Anime: Codable {
+    var mal_id: Int64
     var image_url: String?
     var url: String?
     var title: String
