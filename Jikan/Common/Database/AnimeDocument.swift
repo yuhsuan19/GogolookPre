@@ -120,5 +120,33 @@ extension AnimeDocument {
             print(error)
         }
     }
-
+    
+    static func fetchLocalAnime(with id: Int64) -> Anime? {
+        guard let database = CouchbaseDBManager.shared.database else {
+            return nil
+        }
+        
+        let query = QueryBuilder
+            .select(SelectResult.expression(Meta.id))
+            .from(DataSource.database(database))
+            .where(
+                Expression.property("mal_id").equalTo(Expression.int64(id))
+                .and(Expression.property("type").equalTo(Expression.string(AnimeDocument.type)))
+            )
+            
+        do {
+            for result in try query.execute() {
+                if let documentId = result.string(forKey: "id"),
+                   let document = database.document(withID: documentId) {
+                    let animeDocument = AnimeDocument(document: document)
+                    return animeDocument.anime
+                }
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+        
+        return nil
+    }
 }

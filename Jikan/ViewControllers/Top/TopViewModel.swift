@@ -48,6 +48,7 @@ class TopViewModel: BasedViewModel {
         self.subType = subType
         page = 1
         isLoadAll = false
+        isLoading = false
         animes.removeAll()
         
         onTypeReset?()

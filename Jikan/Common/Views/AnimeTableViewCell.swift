@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol AnimeTableViewCellDelegate: class {
+    func didActionButtonTapped(in cell: AnimeTableViewCell)
+}
+
 class AnimeTableViewCell: BasedTableViewCell {
+    weak var delegate: AnimeTableViewCellDelegate?
     
     var anime: Anime? {
         didSet {
@@ -21,6 +26,9 @@ class AnimeTableViewCell: BasedTableViewCell {
             } else {
                 durationLabel.text = "\(anime?.start_date ?? "-") - \(anime?.end_date ?? "Unkown")"
             }
+            
+            actionButton.setTitle((anime?.isFavorite ?? false) ? "Remove from favorite" : "Add to favorite", for: .normal)
+            actionButton.setTitleColor((anime?.isFavorite ?? false) ? .systemRed : .systemBlue, for: .normal)
         }
     }
     
@@ -37,6 +45,11 @@ class AnimeTableViewCell: BasedTableViewCell {
     lazy var rankLabel = LayoutLabel(textColor: .secondaryLabel, fontSize: 15.basedOnScreenWidth())
     lazy var typeLabel = LayoutLabel(textColor: .secondaryLabel, fontSize: 15.basedOnScreenWidth())
     lazy var durationLabel = LayoutLabel(textColor: .tertiaryLabel, fontSize: 14.basedOnScreenWidth())
+    lazy var actionButton: LayoutButton = {
+        let button = LayoutButton(title: "Add to favorite", target: self, action: #selector(onActionButtonTap), for: .touchUpInside)
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
     
     // MARK: Object life cycle
     override func setUpAndLayoutViews() {
@@ -48,6 +61,7 @@ class AnimeTableViewCell: BasedTableViewCell {
         contentView.addSubview(rankLabel)
         contentView.addSubview(typeLabel)
         contentView.addSubview(durationLabel)
+        contentView.addSubview(actionButton)
         
         NSLayoutConstraint.activate([
             coverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20.basedOnScreenWidth()),
@@ -59,8 +73,15 @@ class AnimeTableViewCell: BasedTableViewCell {
             typeLabel.leadingAnchor.constraint(equalTo: rankLabel.trailingAnchor, constant: 8.basedOnScreenWidth()),
             typeLabel.centerYAnchor.constraint(equalTo: rankLabel.centerYAnchor),
             durationLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            durationLabel.topAnchor.constraint(equalTo: rankLabel.bottomAnchor, constant: 6.basedOnScreenWidth())
+            durationLabel.topAnchor.constraint(equalTo: rankLabel.bottomAnchor, constant: 6.basedOnScreenWidth()),
+            actionButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            actionButton.bottomAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: -4.basedOnScreenWidth()),
+            actionButton.heightAnchor.constraint(equalToConstant: 24.basedOnScreenWidth())
         ])
-        
+    }
+    
+    // MARK: User action
+    @objc func onActionButtonTap() {
+        delegate?.didActionButtonTapped(in: self)
     }
 }

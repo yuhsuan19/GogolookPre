@@ -8,15 +8,16 @@
 import UIKit
 import SafariServices
 
-protocol AnimeTableViewViewDelegate: UIViewController {
+protocol AnimeTableViewDelegate: UIViewController {
     func showContentWith(url: URL?)
     func loadMoreContent()
+    func updateFavoriteAnime(at index: Int)
 }
 
-extension AnimeTableViewViewDelegate {
+extension AnimeTableViewDelegate {
     func showContentWith(url: URL?) {
         guard let url = url else {
-            // error handeling
+            // error handling
             return
         }
         let safari = SFSafariViewController(url: url)
@@ -24,14 +25,10 @@ extension AnimeTableViewViewDelegate {
     }
 }
 
-class AnimeTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
-    weak var viewController: AnimeTableViewViewDelegate?
+class AnimeTableView: UITableView, UITableViewDelegate, UITableViewDataSource, AnimeTableViewCellDelegate {
+    weak var viewController: AnimeTableViewDelegate?
     
-    var animes: [Anime] = [] {
-        didSet {
-            reloadData()
-        }
-    }
+    var animes: [Anime] = []
     
     // MARK: Object life cycle
     init() {
@@ -60,6 +57,7 @@ class AnimeTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Anime", for: indexPath) as! AnimeTableViewCell
         cell.anime = animes[indexPath.row]
+        cell.delegate = self
         return cell
     }
     
@@ -71,5 +69,22 @@ class AnimeTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         if (indexPath.row > animes.count - 8) {
             viewController?.loadMoreContent()
         }
+    }
+    
+    func didActionButtonTapped(in cell: AnimeTableViewCell) {
+        guard let index = indexPath(for: cell)?.row else {
+            return
+        }
+        
+        let anime = animes[index]
+        
+        if anime.isFavorite {
+            AnimeDocument.deleteLocalAnime(with: anime.mal_id)
+        } else {
+            let animeDocument = AnimeDocument(anime: anime)
+            animeDocument?.save()
+        }
+        
+        viewController?.updateFavoriteAnime(at: index)
     }
 }

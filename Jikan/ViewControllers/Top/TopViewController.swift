@@ -33,6 +33,11 @@ class TopViewController: BasedViewController<TopViewModel> {
         viewModel.fetchTopAnimes()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func bindViewModel() {
         super.bindViewModel()
         
@@ -41,11 +46,13 @@ class TopViewController: BasedViewController<TopViewModel> {
                 // error handeling
             } else {
                 self?.tableView.animes = self?.viewModel.animes ?? []
+                self?.tableView.reloadData()
             }
         }
         
         viewModel.onTypeReset = { [weak self] in
             self?.tableView.animes = self?.viewModel.animes ?? []
+            self?.tableView.reloadData()
             self?.updateTitle()
         }
     }
@@ -72,9 +79,13 @@ class TopViewController: BasedViewController<TopViewModel> {
     }
 }
 
-extension TopViewController: AnimeTableViewViewDelegate, TypePickerViewControllerDelegate {
+extension TopViewController: AnimeTableViewDelegate, TypePickerViewControllerDelegate {
     func loadMoreContent() {
         viewModel.fetchTopAnimes()
+    }
+    
+    func updateFavoriteAnime(at index: Int) {
+        tableView.reloadData()
     }
     
     func didAnimeTypePicked(type: Anime.MainType, subType: Anime.SubType?) {

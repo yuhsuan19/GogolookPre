@@ -37,6 +37,10 @@ struct Anime: Codable {
         let text = formatter.string(from: NSNumber(value: rank)) ?? "-"
         return text
     }
+    
+    var isFavorite: Bool {
+        return !(AnimeDocument.fetchLocalAnime(with: mal_id) == nil)
+    }
 }
 
 extension Anime {
