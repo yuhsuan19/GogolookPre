@@ -15,11 +15,11 @@ class TypePickerCollectionReusableView: UICollectionReusableView {
         }
     }
 
-    lazy var titleLabel = LayoutLabel(text: "Test", textColor: .tertiaryLabel, fontSize: 14.basedOnScreenWidth(), fontWeight: .medium)
+    lazy var titleLabel = LayoutLabel(textColor: .tertiaryLabel, fontSize: 12.basedOnScreenWidth(), fontWeight: .medium)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setUpAndLayoutViews()
     }
     
     required init?(coder: NSCoder) {
@@ -27,8 +27,6 @@ class TypePickerCollectionReusableView: UICollectionReusableView {
     }
     
     private func setUpAndLayoutViews() {
-        backgroundColor = .yellow
-        
         addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20.basedOnScreenWidth()),

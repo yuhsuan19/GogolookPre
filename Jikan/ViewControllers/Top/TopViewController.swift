@@ -9,6 +9,8 @@ import UIKit
 
 class TopViewController: BasedViewController<TopViewModel> {
     
+    lazy var loadingView = AppLoadingView()
+    
     lazy var tableView: AnimeTableView = {
         let tableview = AnimeTableView()
         tableview.viewController = self
@@ -40,6 +42,13 @@ class TopViewController: BasedViewController<TopViewModel> {
     
     override func bindViewModel() {
         super.bindViewModel()
+        
+        viewModel.onLoading = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.viewModel.isLoading ? self.loadingView.show(on: self.view) : self.loadingView.hide()
+        }
         
         viewModel.onAnimesFetch = { [weak self] (error) in
             if let error = error {
@@ -81,6 +90,7 @@ class TopViewController: BasedViewController<TopViewModel> {
 
 extension TopViewController: AnimeTableViewDelegate, TypePickerViewControllerDelegate {
     func loadMoreContent() {
+        viewModel.page += 1
         viewModel.fetchTopAnimes()
     }
     

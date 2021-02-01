@@ -10,7 +10,8 @@ target 'Jikan' do
   pod 'SwiftyJSON', '5.0.0'
   pod 'Kingfisher', '~> 6.0.0'
   pod 'CouchbaseLite-Swift', '2.8.1'
-  
+  pod 'lottie-ios', '3.1.9'
+
   target 'JikanTests' do
     inherit! :search_paths
     # Pods for testing
