@@ -20,5 +20,4 @@ class FavoriteViewControllerTests: XCTestCase {
         sut = nil
     }
     
-    
 }
