@@ -149,4 +149,26 @@ extension AnimeDocument {
         
         return nil
     }
+    
+    static func cleanLocalAnimes() {
+        guard let database = CouchbaseDBManager.shared.database else {
+            return
+        }
+        let query = QueryBuilder
+            .select(SelectResult.expression(Meta.id))
+            .from(DataSource.database(database))
+            .where(Expression.property("type").equalTo(Expression.string(AnimeDocument.type)))
+        
+        do {
+            for result in try query.execute() {
+                if let documentId = result.string(forKey: "id"),
+                    let document = database.document(withID: documentId) {
+                    let animeDocument = AnimeDocument(document: document)
+                    animeDocument.delete()
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
 }

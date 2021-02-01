@@ -13,10 +13,12 @@ class TopViewControllerTests: XCTestCase {
     var sut: TopViewController!
     
     override func setUpWithError() throws {
+        AnimeDocument.cleanLocalAnimes()
         sut = TopViewController()
     }
 
     override func tearDownWithError() throws {
+        AnimeDocument.cleanLocalAnimes()
         sut = nil
     }
 }
@@ -60,14 +62,13 @@ extension TopViewControllerTests {
         wait(for: [promise], timeout: 10)
         
         if let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AnimeTableViewCell {
-            let originalStatus = sut.tableView.animes[0].isFavorite
             sut.tableView.didActionButtonTapped(in: cell)
-            XCTAssert((sut.tableView.animes[0].isFavorite != originalStatus), "Update favorite anime fail")
+            XCTAssert((sut.tableView.animes[0].isFavorite == true), "Add favorite anime fail")
             sut.tableView.reloadData()
             
             if let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AnimeTableViewCell {
                 sut.tableView.didActionButtonTapped(in: cell)
-                XCTAssert((sut.tableView.animes[0].isFavorite == originalStatus), "Update favorite anime fail")
+                XCTAssert((sut.tableView.animes[0].isFavorite == false), "Update favorite anime fail")
             }
         } else {
             XCTAssert(false)

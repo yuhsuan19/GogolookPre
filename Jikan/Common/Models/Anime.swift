@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Anime: Codable {
+struct Anime: Codable, Equatable {
     var mal_id: Int64
     var image_url: String?
     var url: String?
