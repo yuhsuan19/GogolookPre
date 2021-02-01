@@ -17,7 +17,7 @@ protocol AnimeTableViewDelegate: UIViewController {
 extension AnimeTableViewDelegate {
     func showContentWith(url: URL?) {
         guard let url = url else {
-            // error handling
+            showError(AppError.invalidURL)
             return
         }
         let safari = SFSafariViewController(url: url)

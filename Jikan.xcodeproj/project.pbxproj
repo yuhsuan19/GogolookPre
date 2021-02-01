@@ -42,6 +42,8 @@
 		C29F7CC725C799F800290E6E /* AnimeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CC625C799F800290E6E /* AnimeDocument.swift */; };
 		C29F7CDA25C7CAD000290E6E /* AppLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CD925C7CAD000290E6E /* AppLoadingView.swift */; };
 		C29F7CE225C7CAED00290E6E /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = C29F7CE125C7CAED00290E6E /* loading.json */; };
+		C29F7CE825C7D84A00290E6E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CE725C7D84A00290E6E /* AppError.swift */; };
+		C29F7CEE25C7D96600290E6E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CED25C7D96600290E6E /* UIViewControllerExtension.swift */; };
 		C2D350ED25B02AC60020FD79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D350EC25B02AC60020FD79 /* AppDelegate.swift */; };
 		C2D350EF25B02AC60020FD79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D350EE25B02AC60020FD79 /* SceneDelegate.swift */; };
 		C2D350F625B02AC80020FD79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D350F525B02AC80020FD79 /* Assets.xcassets */; };
@@ -117,6 +119,8 @@
 		C29F7CC625C799F800290E6E /* AnimeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDocument.swift; sourceTree = "<group>"; };
 		C29F7CD925C7CAD000290E6E /* AppLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoadingView.swift; sourceTree = "<group>"; };
 		C29F7CE125C7CAED00290E6E /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		C29F7CE725C7D84A00290E6E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		C29F7CED25C7D96600290E6E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C2D350E925B02AC60020FD79 /* Jikan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jikan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D350EC25B02AC60020FD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D350EE25B02AC60020FD79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -330,6 +334,22 @@
 			path = AppLoadingview;
 			sourceTree = "<group>";
 		};
+		C29F7CE625C7D81400290E6E /* AppError */ = {
+			isa = PBXGroup;
+			children = (
+				C29F7CE725C7D84A00290E6E /* AppError.swift */,
+			);
+			path = AppError;
+			sourceTree = "<group>";
+		};
+		C29F7CEC25C7D95700290E6E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C29F7CED25C7D96600290E6E /* UIViewControllerExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C2D350E025B02AC60020FD79 = {
 			isa = PBXGroup;
 			children = (
@@ -483,6 +503,8 @@
 		C2D60E2A25C46A73000D6C82 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C29F7CEC25C7D95700290E6E /* Extensions */,
+				C29F7CE625C7D81400290E6E /* AppError */,
 				C29F7CBD25C799A000290E6E /* Database */,
 				C2D60E3325C46ABE000D6C82 /* NetworkAPI */,
 				C26A74B225C4775E00EFDBDD /* Models */,
@@ -739,6 +761,7 @@
 			files = (
 				C298CBA925C3F19F0087FEEA /* FavoriteViewModel.swift in Sources */,
 				C29F7CA525C6F33900290E6E /* TypePickerCollectionViewFlowLayout.swift in Sources */,
+				C29F7CE825C7D84A00290E6E /* AppError.swift in Sources */,
 				C2D3516725B02F6C0020FD79 /* BasedViewController.swift in Sources */,
 				C2D3517825B045040020FD79 /* BasedView.swift in Sources */,
 				C2D3517E25B047420020FD79 /* LayoutLabel.swift in Sources */,
@@ -766,6 +789,7 @@
 				C24C01D725B13F800096AE9A /* LayoutButton.swift in Sources */,
 				C24C01DC25B146D10096AE9A /* LayoutTextField.swift in Sources */,
 				C2D3516C25B02F900020FD79 /* BasedViewModel.swift in Sources */,
+				C29F7CEE25C7D96600290E6E /* UIViewControllerExtension.swift in Sources */,
 				C26A74BA25C4896800EFDBDD /* TypePickerViewController.swift in Sources */,
 				C2D3517125B032F60020FD79 /* AutoDisposer.swift in Sources */,
 				C29F7C7B25C5AB0600290E6E /* AnimeTableView.swift in Sources */,

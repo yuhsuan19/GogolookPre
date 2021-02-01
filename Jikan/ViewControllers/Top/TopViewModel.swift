@@ -23,12 +23,11 @@ class TopViewModel: BasedViewModel {
             return
         }
         isLoading = true
-        print("load more")
         networkServiceProvider.request(for: JikanAPI.top(type: type, page: page, subtype: subType)) { [weak self] (result) in
             switch result {
             case .success(let response):
                 guard let parsedData = try? JSONDecoder().decode(TopAnimesData.self, from: response.data) else {
-                    print("parsing error")
+                    self?.onAnimesFetch?(AppError.networkFailed)
                     return
                 }
                 self?.isLoadAll = parsedData.top.count < 50
@@ -36,7 +35,7 @@ class TopViewModel: BasedViewModel {
                 self?.onAnimesFetch?(nil)
                 
             case .failure(let error):
-                break
+                self?.onAnimesFetch?(error)
             }
             self?.isLoading = false
         }

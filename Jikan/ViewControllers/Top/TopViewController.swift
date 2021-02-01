@@ -52,7 +52,9 @@ class TopViewController: BasedViewController<TopViewModel> {
         
         viewModel.onAnimesFetch = { [weak self] (error) in
             if let error = error {
-                // error handeling
+                if (self?.viewModel.animes.isEmpty ?? true) {
+                    self?.showError(error)
+                }
             } else {
                 self?.tableView.animes = self?.viewModel.animes ?? []
                 self?.tableView.reloadData()
