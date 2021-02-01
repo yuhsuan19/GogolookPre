@@ -44,11 +44,12 @@
 		C29F7CE225C7CAED00290E6E /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = C29F7CE125C7CAED00290E6E /* loading.json */; };
 		C29F7CE825C7D84A00290E6E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CE725C7D84A00290E6E /* AppError.swift */; };
 		C29F7CEE25C7D96600290E6E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CED25C7D96600290E6E /* UIViewControllerExtension.swift */; };
+		C29F7CF625C80B0400290E6E /* TopViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7CF525C80B0400290E6E /* TopViewControllerTests.swift */; };
+		C29F7D0125C8143D00290E6E /* FavoriteViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F7D0025C8143D00290E6E /* FavoriteViewControllerTests.swift */; };
 		C2D350ED25B02AC60020FD79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D350EC25B02AC60020FD79 /* AppDelegate.swift */; };
 		C2D350EF25B02AC60020FD79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D350EE25B02AC60020FD79 /* SceneDelegate.swift */; };
 		C2D350F625B02AC80020FD79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D350F525B02AC80020FD79 /* Assets.xcassets */; };
 		C2D350F925B02AC80020FD79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D350F725B02AC80020FD79 /* LaunchScreen.storyboard */; };
-		C2D3510425B02AC80020FD79 /* JikanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3510325B02AC80020FD79 /* JikanTests.swift */; };
 		C2D3510F25B02AC80020FD79 /* JikanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3510E25B02AC80020FD79 /* JikanUITests.swift */; };
 		C2D3512B25B02C1B0020FD79 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3512A25B02C1B0020FD79 /* NetworkService.swift */; };
 		C2D3513025B02C4D0020FD79 /* NetworkServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3512F25B02C4D0020FD79 /* NetworkServiceProvider.swift */; };
@@ -121,6 +122,8 @@
 		C29F7CE125C7CAED00290E6E /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		C29F7CE725C7D84A00290E6E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		C29F7CED25C7D96600290E6E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		C29F7CF525C80B0400290E6E /* TopViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewControllerTests.swift; sourceTree = "<group>"; };
+		C29F7D0025C8143D00290E6E /* FavoriteViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewControllerTests.swift; sourceTree = "<group>"; };
 		C2D350E925B02AC60020FD79 /* Jikan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jikan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D350EC25B02AC60020FD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D350EE25B02AC60020FD79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +131,6 @@
 		C2D350F825B02AC80020FD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2D350FA25B02AC80020FD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2D350FF25B02AC80020FD79 /* JikanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JikanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2D3510325B02AC80020FD79 /* JikanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JikanTests.swift; sourceTree = "<group>"; };
 		C2D3510525B02AC80020FD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2D3510A25B02AC80020FD79 /* JikanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JikanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D3510E25B02AC80020FD79 /* JikanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JikanUITests.swift; sourceTree = "<group>"; };
@@ -390,7 +392,8 @@
 		C2D3510225B02AC80020FD79 /* JikanTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2D3510325B02AC80020FD79 /* JikanTests.swift */,
+				C29F7CF525C80B0400290E6E /* TopViewControllerTests.swift */,
+				C29F7D0025C8143D00290E6E /* FavoriteViewControllerTests.swift */,
 				C2D3510525B02AC80020FD79 /* Info.plist */,
 			);
 			path = JikanTests;
@@ -812,7 +815,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2D3510425B02AC80020FD79 /* JikanTests.swift in Sources */,
+				C29F7D0125C8143D00290E6E /* FavoriteViewControllerTests.swift in Sources */,
+				C29F7CF625C80B0400290E6E /* TopViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

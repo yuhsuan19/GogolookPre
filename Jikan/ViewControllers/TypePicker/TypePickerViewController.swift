@@ -163,7 +163,7 @@ extension TypePickerViewController {
     }
     
     var types: [Anime.MainType] {
-        return [ .anime, .manga]
+        return [.anime, .manga]
     }
     
     var subtypes: [Anime.MainType: [Anime.SubType]] {

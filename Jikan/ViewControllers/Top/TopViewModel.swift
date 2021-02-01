@@ -18,7 +18,8 @@ class TopViewModel: BasedViewModel {
     var animes: [Anime] = []
     var onAnimesFetch: ((Error?) -> Void)?
     
-    func fetchTopAnimes() {
+    // 覺得testBlock好像有點醜(!?)，以後設計function前可能要多考慮可測試性
+    func fetchTopAnimes(testBlock: (() -> Void)? = nil) {
         guard !isLoadAll, !isLoading else {
             return
         }
@@ -27,17 +28,20 @@ class TopViewModel: BasedViewModel {
             switch result {
             case .success(let response):
                 guard let parsedData = try? JSONDecoder().decode(TopAnimesData.self, from: response.data) else {
+                    self?.isLoading = false
                     self?.onAnimesFetch?(AppError.networkFailed)
+                    testBlock?()
                     return
                 }
                 self?.isLoadAll = parsedData.top.count < 50
                 self?.animes.append(contentsOf: parsedData.top)
                 self?.onAnimesFetch?(nil)
-                
+                                
             case .failure(let error):
                 self?.onAnimesFetch?(error)
             }
             self?.isLoading = false
+            testBlock?()
         }
     }
     
